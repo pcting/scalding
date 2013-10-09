@@ -10,6 +10,8 @@ import com.typesafe.tools.mima.plugin.MimaKeys._
 import scala.collection.JavaConverters._
 
 object ScaldingBuild extends Build {
+  val localRepo = Resolver.file("local-repository", file(System.getProperty("user.home") + "/.local-maven-repo"))
+
   val sharedSettings = Project.defaultSettings ++ assemblySettings ++ Seq(
     organization := "com.twitter",
 
@@ -25,6 +27,7 @@ object ScaldingBuild extends Build {
     ),
 
     resolvers ++= Seq(
+      localRepo,
       "snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",
       "releases" at "http://oss.sonatype.org/content/repositories/releases",
       "Concurrent Maven Repo" at "http://conjars.org/repo",
