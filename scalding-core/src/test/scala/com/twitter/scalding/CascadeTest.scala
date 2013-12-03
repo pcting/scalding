@@ -23,6 +23,9 @@ import org.specs._
 import cascading.cascade.Cascade
 import cascading.flow.FlowSkipIfSinkNotStale
 import cascading.tuple.Fields
+import org.junit.runner.RunWith
+import org.specs.runner.JUnitSuiteRunner
+import org.specs.runner.JUnit
 
 class Job1(args : Args) extends Job(args) {
     Tsv(args("input0"), ('line)).pipe.map[String, String]('line -> 'line)( (x: String) => "job1:"+x).write(Tsv(args("output0"), fields='line ) )
@@ -46,7 +49,8 @@ class CascadeTestJob(args: Args) extends CascadeJob(args) {
 
 }
 
-class TwoPhaseCascadeTest extends Specification with FieldConversions {
+@RunWith(classOf[JUnitSuiteRunner])
+class TwoPhaseCascadeTest extends Specification with FieldConversions with JUnit {
   "A Cascade job" should {
     CascadeTest("com.twitter.scalding.CascadeTestJob")
       .arg("input0", "input0")

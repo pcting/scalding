@@ -21,6 +21,7 @@ object ScaldingBuild extends Build {
     crossScalaVersions := Seq("2.9.3", "2.10.3"),
 
     libraryDependencies ++= Seq(
+      "junit" % "junit" % "4.11" % "test",
       "org.scalacheck" %% "scalacheck" % "1.10.0" % "test",
       "org.scala-tools.testing" %% "specs" % "1.6.9" % "test",
       "org.mockito" % "mockito-all" % "1.8.5" % "test"
