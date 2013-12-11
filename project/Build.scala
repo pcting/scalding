@@ -54,13 +54,7 @@ object ScaldingBuild extends Build {
     },
 
     publishTo <<= version { v =>
-      Some(
-        if (v.trim.endsWith("SNAPSHOT"))
-          Opts.resolver.sonatypeSnapshots
-        else
-          Opts.resolver.sonatypeStaging
-          //"twttr" at "http://artifactory.local.twitter.com/libs-releases-local"
-      )
+      Some(localRepo)
     },
 
     // Janino includes a broken signature, and is not needed:
